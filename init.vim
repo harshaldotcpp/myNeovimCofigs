@@ -85,7 +85,7 @@ set expandtab smartindent tabstop=4 shiftwidth=4
 " colog them
 color onedark 
 
-
+" default shell
 set shell=fish
 
 
