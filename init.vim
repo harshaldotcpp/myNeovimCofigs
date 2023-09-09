@@ -30,6 +30,9 @@ Plug 'dkarter/bullets.vim'
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v1.*'}
 
 
+Plug 'LunarWatcher/auto-pairs'
+
+
 call plug#end()
 
 
@@ -73,13 +76,21 @@ map <C-l> <C-w>l
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 
-map <C-t> :ToggleTerm<CR>
 set number
 set nowrap!
 set expandtab smartindent tabstop=4 shiftwidth=4
 
 
 
+" set
+autocmd TermEnter term://*toggleterm#*
+      \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+
+" By applying the mappings this way you can pass a count to your
+" mapping to open a specific window.
+" For example: 2<C-t> will open terminal 2
+nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
 
 
 " colog them
@@ -103,6 +114,8 @@ augroup END
 
 " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
 " utf-8 byte sequence
+set pumheight=7
+
 set encoding=utf-8
 " Some servers have issues with backup files, see #649
 set nobackup
